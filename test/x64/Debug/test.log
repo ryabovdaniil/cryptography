@@ -1,0 +1,5 @@
+﻿  Source.cpp
+D:\7_семестр\Защита информации\Cryptography\test\Source.cpp(133,31): warning C4244: аргумент: преобразование "__int64" в "int", возможна потеря данных
+D:\7_семестр\Защита информации\Cryptography\test\Source.cpp(167,31): warning C4244: аргумент: преобразование "__int64" в "int", возможна потеря данных
+D:\7_семестр\Защита информации\Cryptography\test\Source.cpp(169,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  test.vcxproj -> D:\7_семестр\Защита информации\Cryptography\x64\Debug\test.exe

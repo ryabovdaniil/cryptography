@@ -5,7 +5,7 @@
 #include <vector>
 
 using namespace std;
-//таблицы перестановок и замен
+//С‚Р°Р±Р»РёС†С‹ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє Рё Р·Р°РјРµРЅ
 const vector<int> FIRST_PERM_TABLE = { 58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4,
 									  62, 54, 46, 38, 30, 22, 14, 6, 64, 56, 48, 40, 32, 24, 16, 8,
 									  57, 49, 41, 33, 25, 17, 9,  1, 59, 51, 43, 35, 27, 19, 11, 3,
@@ -80,7 +80,7 @@ const int S8[4][16] = {
 };
 
 
-bitset<64> stringToBits(const string str) {//Перевод строки из 8 символов в последовательность бит
+bitset<64> stringToBits(const string str) {//РџРµСЂРµРІРѕРґ СЃС‚СЂРѕРєРё РёР· 8 СЃРёРјРІРѕР»РѕРІ РІ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ Р±РёС‚
 	bitset<64> bits64;
 	for (int i = 0; i < 8; i++) {
 		bitset<8> bits8(str[i]);
@@ -90,7 +90,7 @@ bitset<64> stringToBits(const string str) {//Перевод строки из 8 символов в посл
 	}
 	return bits64;
 }
-string bitsToString(const bitset<64>& bits64) {//перевод из 64 бит в строку
+string bitsToString(const bitset<64>& bits64) {//РїРµСЂРµРІРѕРґ РёР· 64 Р±РёС‚ РІ СЃС‚СЂРѕРєСѓ
 	string text;
 	bitset<8> bits8;
 	for (int i = 0; i < 8; i++) {
@@ -102,42 +102,42 @@ string bitsToString(const bitset<64>& bits64) {//перевод из 64 бит в строку
 	return text;
 }
 
-bitset<64> firstPermutation(const bitset<64>& bits64) {//начальная перестановка
+bitset<64> firstPermutation(const bitset<64>& bits64) {//РЅР°С‡Р°Р»СЊРЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
 	bitset<64> bits;
 	for (int i = 0; i < 64; i++) {
 		bits[i] = bits64[FIRST_PERM_TABLE[i] - 1];
 	}
 	return bits;
 }
-bitset<64> finalPermutation(const bitset<64>& bits64) {//конечная перестановка
+bitset<64> finalPermutation(const bitset<64>& bits64) {//РєРѕРЅРµС‡РЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
 	bitset<64> bits;
 	for (int i = 0; i < 64; i++) {
 		bits[i] = bits64[FINAL_PERM_TABLE[i] - 1];
 	}
 	return bits;
 }
-void pPermutation(bitset<32>& P) {//Перестановка в функции f
+void pPermutation(bitset<32>& P) {//РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° РІ С„СѓРЅРєС†РёРё f
 	bitset<32> temp = P;
 	for (int i = 0; i < 32; i++) {
 		P[i] = temp[P_PERM_TABLE[i] - 1];
 	}
 }
-bitset<64> revfinalPermutation(const bitset<64>& bits64) {//Обратная начальная перестановка 
-	bitset<64> bits;									  //для расшифровывания
+bitset<64> revfinalPermutation(const bitset<64>& bits64) {//РћР±СЂР°С‚РЅР°СЏ РЅР°С‡Р°Р»СЊРЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР° 
+	bitset<64> bits;									  //РґР»СЏ СЂР°СЃС€РёС„СЂРѕРІС‹РІР°РЅРёСЏ
 	for (int i = 0; i < 64; i++) {
 		bits[FINAL_PERM_TABLE[i] - 1] = bits64[i];
 	}
 	return bits;
 }
-bitset<64> revfirstPermutation(const bitset<64>& bits64) {//Обратная конечная перестановка
-	bitset<64> bits;									  //для расшифровывания
+bitset<64> revfirstPermutation(const bitset<64>& bits64) {//РћР±СЂР°С‚РЅР°СЏ РєРѕРЅРµС‡РЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
+	bitset<64> bits;									  //РґР»СЏ СЂР°СЃС€РёС„СЂРѕРІС‹РІР°РЅРёСЏ
 	for (int i = 0; i < 64; i++) {
 		bits[FIRST_PERM_TABLE[i] - 1] = bits64[i];
 	}
 	return bits;
 }
 
-void divByLR(const bitset<64> bits64, bitset<32>& L, bitset<32>& R) {//Разделение блока бит на 2 части
+void divByLR(const bitset<64> bits64, bitset<32>& L, bitset<32>& R) {//Р Р°Р·РґРµР»РµРЅРёРµ Р±Р»РѕРєР° Р±РёС‚ РЅР° 2 С‡Р°СЃС‚Рё
 	for (int i = 0; i < 64; i++) {
 		if (i < 32) {
 			L[i] = bits64[i];
@@ -145,15 +145,15 @@ void divByLR(const bitset<64> bits64, bitset<32>& L, bitset<32>& R) {//Разделени
 		else { R[static_cast<size_t>(i) - 32] = bits64[i]; }
 	}
 }
-void divByCD(const bitset<64> key, bitset<28>& C, bitset<28>& D) {//Разделение ключа на 2 части
-	for (int i = 0; i < 28; i++) {								  //с исключанием битов четности по таблице
+void divByCD(const bitset<64> key, bitset<28>& C, bitset<28>& D) {//Р Р°Р·РґРµР»РµРЅРёРµ РєР»СЋС‡Р° РЅР° 2 С‡Р°СЃС‚Рё
+	for (int i = 0; i < 28; i++) {								  //СЃ РёСЃРєР»СЋС‡Р°РЅРёРµРј Р±РёС‚РѕРІ С‡РµС‚РЅРѕСЃС‚Рё РїРѕ С‚Р°Р±Р»РёС†Рµ
 		C[i] = key[C_TABLE[i] - 1];
 	}
 	for (int i = 0; i < 28; i++) {
 		D[i] = key[D_TABLE[i] - 1];
 	}
 }
-bitset<64> LR(const bitset<32>& L, const bitset<32>& R) {//объединение двух блоков бит в один
+bitset<64> LR(const bitset<32>& L, const bitset<32>& R) {//РѕР±СЉРµРґРёРЅРµРЅРёРµ РґРІСѓС… Р±Р»РѕРєРѕРІ Р±РёС‚ РІ РѕРґРёРЅ
 	bitset<64> res;
 	for (int i = 0; i < 64; i++) {
 		if (i < 32) {
@@ -166,14 +166,14 @@ bitset<64> LR(const bitset<32>& L, const bitset<32>& R) {//объединение двух блок
 	return res;
 }
 
-bitset<48> extensionFunc(const bitset<32>& R) {//функция расширения правой части блока до 48 бит
+bitset<48> extensionFunc(const bitset<32>& R) {//С„СѓРЅРєС†РёСЏ СЂР°СЃС€РёСЂРµРЅРёСЏ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё Р±Р»РѕРєР° РґРѕ 48 Р±РёС‚
 	bitset<48> extended;
 	for (int i = 0; i < 48; i++) {
 		extended[i] = R[EXTENSION_TABLE[i] - 1];
 	}
 	return extended;
 }
-bitset<4> S(const int& iter, const bitset<6>& S) {//функция S преобразования из 6 бит в 4 по таблицам Si
+bitset<4> S(const int& iter, const bitset<6>& S) {//С„СѓРЅРєС†РёСЏ S РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РёР· 6 Р±РёС‚ РІ 4 РїРѕ С‚Р°Р±Р»РёС†Р°Рј Si
 	bitset<2> row; bitset<4> col;
 	row[1] = S[0]; row[0] = S[5];
 
@@ -212,8 +212,8 @@ bitset<4> S(const int& iter, const bitset<6>& S) {//функция S преобразования из 
 	}
 	return bitset<4>(num);
 }
-bitset<32> transformS(const bitset<48>& extended) {//Разделение блока 48 бит на блоки по 6 бит
-	bitset<32> res;								   //и сжатие до 4 бит функцией S
+bitset<32> transformS(const bitset<48>& extended) {//Р Р°Р·РґРµР»РµРЅРёРµ Р±Р»РѕРєР° 48 Р±РёС‚ РЅР° Р±Р»РѕРєРё РїРѕ 6 Р±РёС‚
+	bitset<32> res;								   //Рё СЃР¶Р°С‚РёРµ РґРѕ 4 Р±РёС‚ С„СѓРЅРєС†РёРµР№ S
 	bitset<6> bits6;
 	bitset<4> bits4;
 	for (int i = 0; i < 8; i++) {
@@ -227,7 +227,7 @@ bitset<32> transformS(const bitset<48>& extended) {//Разделение блока 48 бит на 
 	}
 	return res;
 }
-bitset<48> genKeyI(const int& iter, bitset<28>& C, bitset<28>& D) {//Генерация ключа для кажой итерации
+bitset<48> genKeyI(const int& iter, bitset<28>& C, bitset<28>& D) {//Р“РµРЅРµСЂР°С†РёСЏ РєР»СЋС‡Р° РґР»СЏ РєР°Р¶РѕР№ РёС‚РµСЂР°С†РёРё
 	if (iter == 0 || iter == 1 || iter == 8 || iter == 15) {
 		C <<= 1;
 		D <<= 1;
@@ -253,7 +253,7 @@ bitset<48> genKeyI(const int& iter, bitset<28>& C, bitset<28>& D) {//Генерация к
 	}
 	return keyI;
 }
-bitset<32> F(const bitset<32>& R, const bitset<48>& K) {//Основная функция шифрования (функция Фейстеля)
+bitset<32> F(const bitset<32>& R, const bitset<48>& K) {//РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ С€РёС„СЂРѕРІР°РЅРёСЏ (С„СѓРЅРєС†РёСЏ Р¤РµР№СЃС‚РµР»СЏ)
 	bitset<32> f;
 	bitset<48> extended = extensionFunc(R);
 	extended = extended ^ K;
@@ -262,36 +262,36 @@ bitset<32> F(const bitset<32>& R, const bitset<48>& K) {//Основная функция шифро
 	return f;
 }
 
-bitset<64> encryptDES(const bitset<64>& bits, const bitset<64>& key) {//Функция шифрования
+bitset<64> encryptDES(const bitset<64>& bits, const bitset<64>& key) {//Р¤СѓРЅРєС†РёСЏ С€РёС„СЂРѕРІР°РЅРёСЏ
 	bitset<64> res;
-	bitset<64> perm = firstPermutation(bits);//начальная перестановка
+	bitset<64> perm = firstPermutation(bits);//РЅР°С‡Р°Р»СЊРЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
 	bitset<32> L; bitset<32> R;
-	divByLR(perm, L, R);//разделение блока на 2 половины
+	divByLR(perm, L, R);//СЂР°Р·РґРµР»РµРЅРёРµ Р±Р»РѕРєР° РЅР° 2 РїРѕР»РѕРІРёРЅС‹
 	bitset<28> C; bitset<28> D;
-	divByCD(key, C, D);//разделение ключа на 2 половины с исключением битов четности
+	divByCD(key, C, D);//СЂР°Р·РґРµР»РµРЅРёРµ РєР»СЋС‡Р° РЅР° 2 РїРѕР»РѕРІРёРЅС‹ СЃ РёСЃРєР»СЋС‡РµРЅРёРµРј Р±РёС‚РѕРІ С‡РµС‚РЅРѕСЃС‚Рё
 
-	for (int i = 0; i < 16; i++) {//16 раундов шифрования
+	for (int i = 0; i < 16; i++) {//16 СЂР°СѓРЅРґРѕРІ С€РёС„СЂРѕРІР°РЅРёСЏ
 		bitset<32> Li = R;
-		bitset<48> keyI = genKeyI(i, C, D);//генериция i-го ключа
-		bitset<32> f = F(R, keyI);//Основная функция шифрования
+		bitset<48> keyI = genKeyI(i, C, D);//РіРµРЅРµСЂРёС†РёСЏ i-РіРѕ РєР»СЋС‡Р°
+		bitset<32> f = F(R, keyI);//РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ С€РёС„СЂРѕРІР°РЅРёСЏ
 		L ^= f;
 		if (i != 15) {
 			R = L;
 			L = Li;
 		}
 	}
-	res = finalPermutation(LR(L, R));//конечная перестановка
+	res = finalPermutation(LR(L, R));//РєРѕРЅРµС‡РЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
 	//cout << res;
 	return res;
 }
-bitset<64> decryptDES(const bitset<64>& bits, const bitset<64>& key) {//функция расшифровывания
-	bitset<64> bits64 = revfinalPermutation(bits);//обратная начальная перестановка
+bitset<64> decryptDES(const bitset<64>& bits, const bitset<64>& key) {//С„СѓРЅРєС†РёСЏ СЂР°СЃС€РёС„СЂРѕРІС‹РІР°РЅРёСЏ
+	bitset<64> bits64 = revfinalPermutation(bits);//РѕР±СЂР°С‚РЅР°СЏ РЅР°С‡Р°Р»СЊРЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
 	bitset<32> L; bitset<32> R;
-	divByLR(bits64, L, R);//разделение блока на 2 половины
+	divByLR(bits64, L, R);//СЂР°Р·РґРµР»РµРЅРёРµ Р±Р»РѕРєР° РЅР° 2 РїРѕР»РѕРІРёРЅС‹
 	bitset<28> C; bitset<28> D;
-	divByCD(key, C, D);//разделение ключа на 2 половины с исключением битов четности
+	divByCD(key, C, D);//СЂР°Р·РґРµР»РµРЅРёРµ РєР»СЋС‡Р° РЅР° 2 РїРѕР»РѕРІРёРЅС‹ СЃ РёСЃРєР»СЋС‡РµРЅРёРµРј Р±РёС‚РѕРІ С‡РµС‚РЅРѕСЃС‚Рё
 
-	vector<bitset<48>> vectorKeys;//вектор ключей
+	vector<bitset<48>> vectorKeys;//РІРµРєС‚РѕСЂ РєР»СЋС‡РµР№
 	for (int i = 0; i < 16; i++) {
 		vectorKeys.push_back(genKeyI(i, C, D));
 	}
@@ -308,16 +308,16 @@ bitset<64> decryptDES(const bitset<64>& bits, const bitset<64>& key) {//функция 
 		L = R;
 		R = Li;
 	}
-	bitset<64> res = revfirstPermutation(LR(L, R));//обратная конечная перестановка
+	bitset<64> res = revfirstPermutation(LR(L, R));//РѕР±СЂР°С‚РЅР°СЏ РєРѕРЅРµС‡РЅР°СЏ РїРµСЂРµСЃС‚Р°РЅРѕРІРєР°
 	return res;
 }
 
-//функция DES
+//С„СѓРЅРєС†РёСЏ DES
 string DES(const string& text, const string& key, bitset<64> mode(const bitset<64>& t, const bitset<64>& k)) {
 	string res = "";
 	bitset<64> k = stringToBits(key);
 
-	//если размер текста кратен 8
+	//РµСЃР»Рё СЂР°Р·РјРµСЂ С‚РµРєСЃС‚Р° РєСЂР°С‚РµРЅ 8
 	if ((text.size() % 8) == 0) {
 		for (unsigned int i = 0; i < text.size() / 8; i++) {
 			string mid = "";
@@ -330,10 +330,10 @@ string DES(const string& text, const string& key, bitset<64> mode(const bitset<6
 			res += block;
 		}
 	}
-	//елси не кратен
+	//РµР»СЃРё РЅРµ РєСЂР°С‚РµРЅ
 	else {
 		for (unsigned int i = 0; i < (text.size() / 8) + 1; i++) {
-			if (i != (text.size() / 8)) {//цельные блоки по 8 символов
+			if (i != (text.size() / 8)) {//С†РµР»СЊРЅС‹Рµ Р±Р»РѕРєРё РїРѕ 8 СЃРёРјРІРѕР»РѕРІ
 				string mid = "";
 				for (int j = 0; j < 8; j++) {
 					mid += text[i * 8 + j];
@@ -343,7 +343,7 @@ string DES(const string& text, const string& key, bitset<64> mode(const bitset<6
 				string block = bitsToString(r);
 				res += block;
 			}
-			else {//обработка последнего блока в котромо меньше 8 символов
+			else {//РѕР±СЂР°Р±РѕС‚РєР° РїРѕСЃР»РµРґРЅРµРіРѕ Р±Р»РѕРєР° РІ РєРѕС‚СЂРѕРјРѕ РјРµРЅСЊС€Рµ 8 СЃРёРјРІРѕР»РѕРІ
 				string mid = "";
 				for (int j = 0; j < (text.size() % 8); j++) {
 					mid += text[i * 8 + j];
@@ -370,17 +370,17 @@ int main() {
 	string out = "";
 
 	while (true) {
-		cout << "Введите текст: ";
+		cout << "Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚: ";
 		getline(cin, text);
-		cout << "Введите ключ(8 символов): ";
+		cout << "Р’РІРµРґРёС‚Рµ РєР»СЋС‡(8 СЃРёРјРІРѕР»РѕРІ): ";
 		getline(cin, key);
 		while (key.size() != 8) {
-			cout << "Некорректный размер ключа! Попробуйте снова: ";
+			cout << "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ СЂР°Р·РјРµСЂ РєР»СЋС‡Р°! РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°: ";
 			getline(cin, key);
 		}
 		out = DES(text, key, encryptDES);
-		cout << "Зашифрованное сообщение: " << endl << out << endl;
-		cout << "Расшифрованное сообщение: " << DES(out, key, decryptDES) << endl;
+		cout << "Р—Р°С€РёС„СЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ: " << endl << out << endl;
+		cout << "Р Р°СЃС€РёС„СЂРѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ: " << DES(out, key, decryptDES) << endl;
 		cout << "------------------------------------------------------------------------" << endl;
 	}
 }
