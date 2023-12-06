@@ -1,0 +1,3 @@
+﻿  gamma.cpp
+D:\7_семестр\Защита информации\Cryptography\Gamma\gamma.cpp(20,30): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  Gamma.vcxproj -> D:\7_семестр\Защита информации\Cryptography\x64\Debug\Gamma.exe

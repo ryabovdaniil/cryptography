@@ -1,0 +1,4 @@
+﻿  omophone.cpp
+D:\7_семестр\Защита информации\Cryptography\Omophone\omophone.cpp(34,82): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\7_семестр\Защита информации\Cryptography\Omophone\omophone.cpp(66,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Omophone.vcxproj -> D:\7_семестр\Защита информации\Cryptography\x64\Debug\Omophone.exe

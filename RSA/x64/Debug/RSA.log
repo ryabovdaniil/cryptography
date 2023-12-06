@@ -1,0 +1,5 @@
+﻿  rsa.cpp
+D:\7_семестр\Защита информации\Cryptography\RSA\rsa.cpp(83,13): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
+D:\7_семестр\Защита информации\Cryptography\RSA\rsa.cpp(97,9): warning C4244: инициализация: преобразование "__int64" в "int", возможна потеря данных
+D:\7_семестр\Защита информации\Cryptography\RSA\rsa.cpp(108,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  RSA.vcxproj -> D:\7_семестр\Защита информации\Cryptography\x64\Debug\RSA.exe
